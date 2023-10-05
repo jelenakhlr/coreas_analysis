@@ -47,6 +47,11 @@ The script will perform the following steps:
 4. Save the converted data in the specified output directory.
 5. Delete the temporary directory and its contents to free up disk space.
 
+If your scripts crash, saying "0 showers found":
+1. check the path
+2. check the parameter `reas_names = glob.glob(options.directory + "**/SIM??????.reas")` in `grand/sim2root/CoREASRawToRoot/coreas_pipeline.py` and modify the `**` according to your paths.
+
+
 ## Customization
 You can customize the path to the GRAND library by modifying the `path_to_grandlib` variable at the beginning of the script.
 
