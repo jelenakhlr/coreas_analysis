@@ -17,7 +17,7 @@ The script provides two main options for data processing:
 If you have multiple simulation sets organized in directories and want to process them in bulk, you can use this option. Here's how to use it:
 
 ```bash
-python script.py --directory /path/to/simulation_sets
+python unzip_andconvert2root.py --directory /path/to/simulation_sets
 ```
 
 Replace `/path/to/simulation_sets` with the full path to the directory containing your multiple simulation sets. The script will identify and process all `.tar.gz` files within this directory.
@@ -26,7 +26,7 @@ Replace `/path/to/simulation_sets` with the full path to the directory containin
 If you have a single simulation set stored in a `.tar.gz` file and want to process it individually, you can use this option. Here's how to use it:
 
 ```bash
-python script.py --file /path/to/single_simulation_set.tar.gz
+python unzip_andconvert2root.py --file /path/to/single_simulation_set.tar.gz
 ```
 
 Replace `/path/to/single_simulation_set.tar.gz` with the full path to your single simulation set file. The script will extract the contents of this file and process it.
@@ -39,12 +39,6 @@ The converted simulation data in GRANDroot format will be saved to the following
 ```
 
 ## Running the Script
-After specifying the directory or file as described above, run the script as follows:
-
-```bash
-python script.py
-```
-
 The script will perform the following steps:
 
 1. Create a temporary directory for processing the data.
