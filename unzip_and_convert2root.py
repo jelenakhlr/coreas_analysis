@@ -16,8 +16,8 @@ parser.add_option("--file", "-f", type="str",
 
 
 # # Create a temporary directory
-temp_dir = tempfile.mkdtemp() # "/pbs/home/j/jpeterei/temp_processed/"
-out_dir = "/sps/grand/jelena/stshp+GP13/GRANDroot_format/"
+temp_dir = "/sps/grand/jelena/stshp+GP13/temp/"
+out_dir = "/sps/grand/jelena/stshp+GP13/root/"
 print("Created temp directory", temp_dir)
 
 if __name__ == '__main__':
