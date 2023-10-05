@@ -41,7 +41,7 @@ if __name__ == '__main__':
                 with tarfile.open(file_path, 'r:gz') as tar:
                     tar.extractall(path=temp_dir)
         else:
-            print(f"ERROR: {filename} is not a .tar.gz file")
+            print(f"ERROR: {file_path} is not a .tar.gz file")
             exit()
     else:
         parser.print_help()
@@ -50,8 +50,8 @@ if __name__ == '__main__':
     # Perform the analysis on the contents of the temporary directory.
     print("Converting to GRANDroot format...")
     coreas_pipeline = [
-                'python3', f'{path_to_grandlib}sim2root/CoREASRawRoot/coreas_pipeline.py', '-d', temp_dir,\
-                'o', '/sps/grand/jelena/stshp+GP13/root/'
+                'python3', f'{path_to_grandlib}sim2root/CoREASRawRoot/coreas_pipeline.py', '-d', "{temp_dir}**/",\
+                '-o', '/sps/grand/jelena/stshp+GP13/root/'
             ]
     subprocess.run(coreas_pipeline, check=True)
     print(f"Coreas simulations in GRANDroot format saved to {out_dir}")
