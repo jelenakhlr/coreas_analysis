@@ -16,7 +16,7 @@ parser.add_option("--file", "-f", type="str",
 
 
 # # Create a temporary directory
-temp_dir = "/pbs/home/j/jpeterei/temp_processed/" # tempfile.mkdtemp()
+temp_dir = tempfile.mkdtemp() # "/pbs/home/j/jpeterei/temp_processed/"
 out_dir = "/sps/grand/jelena/stshp+GP13/GRANDroot_format/"
 print("Created temp directory", temp_dir)
 
@@ -51,7 +51,7 @@ if __name__ == '__main__':
     print("Converting to GRANDroot format...")
     coreas_pipeline = [
                 'python3', f'{path_to_grandlib}sim2root/CoREASRawRoot/coreas_pipeline.py', '-d', temp_dir,\
-                'o', 
+                'o', '/sps/grand/jelena/stshp+GP13/root/'
             ]
     subprocess.run(coreas_pipeline, check=True)
     print(f"Coreas simulations in GRANDroot format saved to {out_dir}")
