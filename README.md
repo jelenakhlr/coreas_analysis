@@ -50,5 +50,7 @@ The script will perform the following steps:
 ## Customization
 You can customize the path to the GRAND library by modifying the `path_to_grandlib` variable at the beginning of the script.
 
+You can also change the output path by modifying the `out_dir` variable inside the script.
+
 ## Authors
 - Script Author: [@jelenakhlr](https://github.com/jelenakhlr)
