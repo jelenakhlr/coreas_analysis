@@ -50,12 +50,12 @@ if __name__ == '__main__':
     # Perform the analysis on the contents of the temporary directory.
     print("Converting to GRANDroot format...")
     coreas_pipeline = [
-                'python3', f'{path_to_grandlib}sim2root/CoREASRawRoot/coreas_pipeline.py', '-d', "{temp_dir}**/",\
-                '-o', '/sps/grand/jelena/stshp+GP13/root/'
+                'python3', f'{path_to_grandlib}sim2root/CoREASRawRoot/coreas_pipeline.py', '-d', f"{temp_dir}*/run??/",\
+                '-o', f'{outdir}'
             ]
     subprocess.run(coreas_pipeline, check=True)
     print(f"Coreas simulations in GRANDroot format saved to {out_dir}")
 
     # Delete the temporary directory and its contents
-    subprocess.run(['rm', '-r', temp_dir], check=True)
-    print("Removed temp directory")
+    # subprocess.run(['rm', '-r', temp_dir], check=True)
+    # print("Removed temp directory")
