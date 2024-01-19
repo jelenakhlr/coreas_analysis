@@ -5,7 +5,6 @@ import tempfile
 import subprocess
 from optparse import OptionParser
 
-path_to_grandlib = "/pbs/home/j/jpeterei/grandlib_dev_io_root/grand/" #! modfiy this path if necessary
 
 parser = OptionParser()
 parser.add_option("--directory", "--dir", "-d", type="str",
@@ -17,7 +16,7 @@ parser.add_option("--file", "-f", type="str",
 
 # # Create a temporary directory
 temp_dir = "/sps/grand/jelena/stshp+GP13/temp/"
-out_dir = "/sps/grand/jelena/stshp+GP13/root/"
+out_dir = "/sps/grand/jelena/stshp+GP13/hdf5/"
 print("Created temp directory", temp_dir)
 
 if __name__ == '__main__':
@@ -36,24 +35,25 @@ if __name__ == '__main__':
         file_path = options.file
         input_directory = os.path.dirname(file_path)
         if file_path.endswith('.tar.gz'):
-                print(f"file {file_path} unzipped to {temp_dir}")
-                # Extract the .tar.gz file into the temporary directory
-                with tarfile.open(file_path, 'r:gz') as tar:
-                    tar.extractall(path=temp_dir)
+            print(f"file {file_path} unzipped to {temp_dir}")
+            # Extract the .tar.gz file into the temporary directory
+            with tarfile.open(file_path, 'r:gz') as tar:
+                tar.extractall(path=temp_dir)
         else:
             print(f"ERROR: {file_path} is not a .tar.gz file")
             exit()
     else:
         parser.print_help()
     
+    # add glob search here to find all .reas files in the temp directory
     
     # Perform the analysis on the contents of the temporary directory.
-    print("Converting to GRANDroot format...")
+    print("Converting to hdf5 format...")
     coreas_pipeline = [
-                'python3', f'{path_to_grandlib}sim2root/CoREASRawRoot/coreas_pipeline.py', '-d', f"{temp_dir}*/run??/",\
-                '-o', f'{outdir}'
+                'python3', 'coreas_to_hdf5_mods.py', f'{file_path}', '-o', f'{outdir}', '-hl', '--flow', '50', '--fhigh', '200'
             ]
-    # python3 /pbs/home/j/jpeterei/grandlib_dev_io_root/grand/sim2root/CoREASRawRoot/coreas_pipeline.py -d /sps/grand/jelena/stshp+GP13/temp/*/run??/ -o /sps/grand/jelena/stshp+GP13/root/
+    # python3 coreas_hdf5_converter_mods.py <input_file> -o <output_directory> -of <output_filename> -hl --flow 50 --fhigh 200
+    #/sps/grand/jelena/stshp+GP13/temp/proton/run01/sim_storage/inp/8.2/SIM001102.reas
     subprocess.run(coreas_pipeline, check=True)
     print(f"Coreas simulations in GRANDroot format saved to {out_dir}")
 
