@@ -25,25 +25,25 @@ sim2root() {
 
   # Run sim2root.py with the input and output paths
   python3 sim2root.py "/sps/grand/jelena/GP300/rawroot/$en" \
-                     -o "/sps/grand/jelena/GP300/sim2root/"
+                     -o "/sps/grand/jelena/GP300/root_nonoise/"
 }
 
 # Find all directories with the pattern (replace with your actual path)
 energies=(10.0 10.2 10.4 10.6 8.0 8.2 8.4 8.6 8.8 9.0 9.2 9.4 9.6 9.8)
-for en in "${energies[@]}"; do
-  mkdir /sps/grand/jelena/GP300/rawroot/$en
-  find /sps/grand/jelena/GP300/rawsims/GP300/run01/$en/*/*/ -type d -print | while read dir; do  
-    echo ". . . . . . . . . . . . . . . . . . . . ."
-    echo ". . . . . . . . . . . . . . . . . . . . ."
-    echo "Creating rawroot for $dir"
-    rawroot "$dir" "$en"
-    echo "Moving rawroot file to /sps/grand/jelena/GP300/rawroot/$en"
-    mv /pbs/home/j/jpeterei/grand/sim2root/CoREASRawRoot/*.rawroot /sps/grand/jelena/GP300/rawroot/$en
-    echo ". . . . . . . . . . . . . . . . . . . . ."
-    echo ". . . . . . . . . . . . . . . . . . . . ."
-    echo ". . . . . . . . . . . . . . . . . . . . ."
-  done
-done
+# for en in "${energies[@]}"; do
+#   mkdir /sps/grand/jelena/GP300/rawroot/$en
+#   find /sps/grand/jelena/GP300/rawsims/GP300/run01/$en/*/*/ -type d -print | while read dir; do  
+#     echo ". . . . . . . . . . . . . . . . . . . . ."
+#     echo ". . . . . . . . . . . . . . . . . . . . ."
+#     echo "Creating rawroot for $dir"
+#     rawroot "$dir" "$en"
+#     echo "Moving rawroot file to /sps/grand/jelena/GP300/rawroot/$en"
+#     mv /pbs/home/j/jpeterei/grand/sim2root/CoREASRawRoot/*.rawroot /sps/grand/jelena/GP300/root_nonoise/$en
+#     echo ". . . . . . . . . . . . . . . . . . . . ."
+#     echo ". . . . . . . . . . . . . . . . . . . . ."
+#     echo ". . . . . . . . . . . . . . . . . . . . ."
+#   done
+# done
 
 
 for en in "${energies[@]}"; do
